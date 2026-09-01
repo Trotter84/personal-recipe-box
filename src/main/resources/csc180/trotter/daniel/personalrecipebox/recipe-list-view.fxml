@@ -14,11 +14,11 @@
     </top>
     <center>
         <ListView fx:id="recipeListView" />
-            <Label fx:id="emptyStateLabel" text="Recipe Box Empty  ╯︿╰" visible="false" />
     </center>
     <bottom>
         <VBox alignment="CENTER" style="-fx-padding: 10;">
             <Button fx:id="addRecipeButton" text="Add New Recipe" onAction="#onAddRecipeClick" />
+            <Label fx:id="emptyStateLabel" text="Recipe Box Empty  ╯︿╰" visible="false" />
         </VBox>
     </bottom>
 </BorderPane>
