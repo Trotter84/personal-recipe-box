@@ -5,10 +5,14 @@ import csc180.trotter.daniel.personalrecipebox.storage.RecipeStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -16,10 +20,8 @@ public class RecipeListController {
 
 	@FXML
 	private ListView<Recipe> recipeListView;
-
 	@FXML
 	private Label emptyStateLabel;
-
 	@FXML
 	private Button addRecipeButton;
 
@@ -44,7 +46,7 @@ public class RecipeListController {
 		recipeListView.setOnMouseClicked(event -> {
 			Recipe selected = recipeListView.getSelectionModel().getSelectedItem();
 			if (selected != null) {
-				openDetailView(selected);
+				openEditView(selected);
 			}
 		});
 	}
@@ -55,11 +57,34 @@ public class RecipeListController {
 		recipeListView.setVisible(!isEmpty);
 	}
 
-	private void openDetailView(Recipe recipe) {
-		System.out.println("Clicked: " + recipe.getName());
-	}
-
 	@FXML
 	protected void onAddRecipeClick() {
+		openEditView(null);
+	}
+
+	private void openEditView(Recipe recipeToEdit) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-edit-view.fxml"));
+			javafx.scene.Parent root = loader.load();
+
+			RecipeEditController controller = loader.getController();
+			controller.setOnSaveCallback(savedRecipe -> {
+				if (recipeToEdit != null) {
+					recipeData.remove(recipeToEdit);
+				}
+				recipeData.add(savedRecipe);
+				RecipeStorage.saveRecipes(recipeData);
+				updateEmptyState();
+			});
+
+			if (recipeToEdit != null) {
+				controller.populateFields(recipeToEdit);
+			}
+
+			Stage stage = (Stage) addRecipeButton.getScene().getWindow();
+			stage.setScene(new Scene(root, 480, 640));
+		} catch (IOException e) {
+			System.err.println("Failed to open edit view: " + e.getMessage());
+		}
 	}
 }

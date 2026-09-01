@@ -13,7 +13,7 @@ public class RecipeStorage {
 
 	public static void saveRecipes(List<Recipe> recipes) {
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
-			out.writeObject(recipes);
+			out.writeObject(new ArrayList<>(recipes));
 		} catch (IOException e) {
 			System.err.println("Failed to save recipes: " + e.getMessage());
 		}
