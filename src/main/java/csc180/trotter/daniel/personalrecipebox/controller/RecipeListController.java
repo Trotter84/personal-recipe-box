@@ -1,4 +1,4 @@
-package csc180.trotter.daniel.personalrecipebox;
+package csc180.trotter.daniel.personalrecipebox.controller;
 
 import csc180.trotter.daniel.personalrecipebox.model.Recipe;
 import csc180.trotter.daniel.personalrecipebox.storage.RecipeStorage;
