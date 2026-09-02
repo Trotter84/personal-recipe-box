@@ -8,16 +8,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class RecipeListController {
 
+	@FXML
+	private ComboBox<String> categoryFilterBox;
 	@FXML
 	private ListView<Recipe> recipeListView;
 	@FXML
@@ -25,11 +29,13 @@ public class RecipeListController {
 	@FXML
 	private Button addRecipeButton;
 
+	private List<Recipe> allRecipes;
 	private ObservableList<Recipe> recipeData;
 
 	@FXML
 	public void initialize() {
 		List<Recipe> loaded = RecipeStorage.loadRecipes();
+		allRecipes = new ArrayList<>(loaded);
 		recipeData = FXCollections.observableArrayList(loaded);
 		recipeListView.setItems(recipeData);
 
@@ -41,6 +47,7 @@ public class RecipeListController {
 			}
 		});
 
+		populateCategoryFilter();
 		updateEmptyState();
 
 		recipeListView.setOnMouseClicked(event -> {
@@ -49,12 +56,68 @@ public class RecipeListController {
 				openEditView(selected);
 			}
 		});
+
+		categoryFilterBox.setOnAction(event -> applyCategoryFilter());
+	}
+
+	/**
+	 * <b>Lambda</b>
+	 * maps each recipe to its category, collects distinct values, sorts them.
+	 */
+	private void populateCategoryFilter() {
+		List<String> categories = allRecipes.stream()
+											.map(Recipe::getCategory)
+											.filter(c -> c != null && !c.isBlank())
+											.distinct()
+											.sorted()
+											.collect(java.util.stream.Collectors.toList());
+		categoryFilterBox.getItems().setAll(categories);
 	}
 
 	private void updateEmptyState() {
 		boolean isEmpty = recipeData.isEmpty();
 		emptyStateLabel.setVisible(isEmpty);
 		recipeListView.setVisible(!isEmpty);
+	}
+
+	/**
+	 * <b>Lambda</b>
+	 * keeps only recipes that match the selected category.
+	 */
+	private void applyCategoryFilter() {
+		String selected = categoryFilterBox.getValue();
+		if (selected == null) {
+			recipeData.setAll(allRecipes);
+			return;
+		}
+		List<Recipe> filtered = allRecipes.stream().filter(r -> selected.equals(r.getCategory())).collect(java.util.stream.Collectors.toList());
+		recipeData.setAll(filtered);
+		updateEmptyState();
+	}
+
+	@FXML
+	protected void onClearFilterClick() {
+		categoryFilterBox.setValue(null);
+		recipeData.setAll(allRecipes);
+		updateEmptyState();
+	}
+
+	/**
+	 * <b>Lambda</b>
+	 * sorts by name (case-insensitive)
+	 */
+	@FXML
+	protected void onSortByNameClick() {
+		recipeData.sort((a, b) -> a.getName().compareToIgnoreCase(b.getName()));
+	}
+
+	/**
+	 * <b>Lambda</b>
+	 * sorts by prep time, <i>ASC</i>
+	 */
+	@FXML
+	protected void onSortByPrepTimeClick() {
+		recipeData.sort((a, b) -> Integer.compare(a.getPrepTimeMinutes(), b.getPrepTimeMinutes()));
 	}
 
 	@FXML
@@ -71,9 +134,12 @@ public class RecipeListController {
 			controller.setOnSaveCallback(savedRecipe -> {
 				if (recipeToEdit != null) {
 					recipeData.remove(recipeToEdit);
+					allRecipes.remove(recipeToEdit);
 				}
 				recipeData.add(savedRecipe);
+				allRecipes.add(savedRecipe);
 				RecipeStorage.saveRecipes(recipeData);
+				populateCategoryFilter();
 				updateEmptyState();
 			});
 
