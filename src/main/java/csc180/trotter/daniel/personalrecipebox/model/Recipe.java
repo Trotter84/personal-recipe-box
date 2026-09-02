@@ -15,20 +15,20 @@ public class Recipe implements Serializable {
 	private List<String> tags;
 
 	public Recipe(String name, List<String> ingredients, List<String> steps, String category, int prepTimeMinutes, List<String> tags) {
-		this.name = name;
-		this.ingredients = ingredients;
-		this.steps = steps;
-		this.category = category;
-		this.prepTimeMinutes = prepTimeMinutes;
-		this.tags = tags;
+		setName(name);
+		setIngredients(ingredients);
+		setSteps(steps);
+		setCategory(category);
+		setPrepTimeMinutes(prepTimeMinutes);
+		setTags(tags);
 	}
 
 	public Recipe(String name, List<String> ingredients, List<String> steps, String category, int prepTimeMinutes) {
-		this.name = name;
-		this.ingredients = ingredients;
-		this.steps = steps;
-		this.category = category;
-		this.prepTimeMinutes = prepTimeMinutes;
+		setName(name);
+		setIngredients(ingredients);
+		setSteps(steps);
+		setCategory(category);
+		setPrepTimeMinutes(prepTimeMinutes);
 	}
 
 	public String getName() {

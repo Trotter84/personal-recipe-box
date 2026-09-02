@@ -19,12 +19,14 @@
     <TextField fx:id="prepTimeField" />
     <Label fx:id="prepTimeErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
 
-    <Label text="Ingredients (one per line, e.g. '2 cups flour')" />
-    <TextArea fx:id="ingredientsField" prefRowCount="5" />
+    <Label text="Ingredients" />
+    <VBox fx:id="ingredientRowsContainer" spacing="6.0" />
+    <Button fx:id="addIngredientButton" text="+ Add Ingredient" onAction="#onAddIngredientClick" />
     <Label fx:id="ingredientsErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
 
-    <Label text="Steps (one per line)" />
-    <TextArea fx:id="stepsField" prefRowCount="5" />
+    <Label text="Steps" />
+    <VBox fx:id="stepRowsContainer" spacing="6.0" />
+    <Button fx:id="addStepButton" text="+ Add Step" onAction="#onAddStepClick" />
 
     <HBox spacing="10.0" alignment="CENTER_RIGHT">
         <Button fx:id="cancelButton" text="Cancel" onAction="#onCancelClick" />
