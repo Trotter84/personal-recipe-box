@@ -13,7 +13,7 @@
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeListController">
     <top>
         <VBox spacing="8.0" style="-fx-padding: 10;">
-            <Label text="My Recipes" style="-fx-font-size: 20px;" />
+            <Label text="My Recipes" styleClass="label-title" />
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Filter by category:" />
                 <ComboBox fx:id="categoryFilterBox" />

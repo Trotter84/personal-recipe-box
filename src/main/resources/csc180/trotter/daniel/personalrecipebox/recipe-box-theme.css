@@ -1,0 +1,78 @@
+/*.root {*/
+/*    --white: #FFFFFF;*/
+/*    --white-off: #FFF8F0;*/
+/*    --white-pink: #E8E0F5;*/
+/*    --pink-light: #D6C9EC;*/
+/*    --purple: #6B3FA0;*/
+/*    --purple-darker: #57318A;*/
+/*    --brown: #3D2B1F;*/
+/*    --red: #C0392B;*/
+
+/*    -fx-font-family: "Segoe UI", sans-serif;*/
+/*    -fx-background-color: var(--white-off);*/
+/*}*/
+
+.root {
+    -fx-background-color: #FFF8F0;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.label {
+    -fx-text-fill: #3D2B1F;
+}
+
+.label-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6B3FA0;
+}
+
+.button {
+    -fx-background-color: #6B3FA0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #57318A;
+}
+
+.button-secondary {
+    -fx-background-color: #E8E0F5;
+    -fx-text-fill: #3D2B1F;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #D6C9EC;
+}
+
+.text-field, .text-area, .combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #D8CBEA;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #D8CBEA;
+}
+
+.list-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #E8E0F5;
+    -fx-text-fill: #3D2B1F;
+}
+
+.error-label {
+    -fx-text-fill: #C0392B;
+    -fx-font-size: 11px;
+}

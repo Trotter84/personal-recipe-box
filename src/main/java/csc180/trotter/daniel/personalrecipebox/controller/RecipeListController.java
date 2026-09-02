@@ -148,7 +148,11 @@ public class RecipeListController {
 			}
 
 			Stage stage = (Stage) addRecipeButton.getScene().getWindow();
-			stage.setScene(new Scene(root, 480, 640));
+			Scene newScene = new Scene(root, 500, 740);
+			newScene.getStylesheets().add(
+					getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-box-theme.css").toExternalForm()
+			);
+			stage.setScene(newScene);
 		} catch (IOException e) {
 			System.err.println("Failed to open edit view: " + e.getMessage());
 		}
