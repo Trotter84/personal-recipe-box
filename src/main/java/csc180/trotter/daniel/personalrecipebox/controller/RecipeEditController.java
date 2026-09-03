@@ -334,7 +334,7 @@ public class RecipeEditController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-list-view.fxml"));
 			Parent root = loader.load();
 			Stage stage = (Stage) nameField.getScene().getWindow();
-			Scene newScene = new Scene(root, 500, 740);
+			Scene newScene = new Scene(root, 600, 840);
 			newScene.getStylesheets().add(
 					getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-box-theme.css").toExternalForm()
 			);

@@ -148,7 +148,7 @@ public class RecipeListController {
 			}
 
 			Stage stage = (Stage) addRecipeButton.getScene().getWindow();
-			Scene newScene = new Scene(root, 500, 740);
+			Scene newScene = new Scene(root, 600, 840);
 			newScene.getStylesheets().add(
 					getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-box-theme.css").toExternalForm()
 			);

@@ -13,7 +13,11 @@
 /*}*/
 
 .root {
-    -fx-background-color: #FFF8F0;
+    -fx-background-color: rgb(255 255 255 / 0);
+    -fx-background-image: url("assets/recipe-book-background-cat.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
     -fx-font-family: "Segoe UI", sans-serif;
 }
 
@@ -58,17 +62,18 @@
 }
 
 .list-view {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-border-color: #D8CBEA;
 }
 
 .list-cell {
+    /*-fx-background-color: transparent;*/
     -fx-padding: 10px;
     -fx-font-size: 14px;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #E8E0F5;
+    /*-fx-background-color: transparent;*/
     -fx-text-fill: #3D2B1F;
 }
 
