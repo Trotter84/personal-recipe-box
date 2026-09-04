@@ -9,41 +9,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeListController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeListController">
     <top>
         <VBox spacing="8.0" style="-fx-padding: 10;">
-            <Label styleClass="label-title" text="My Recipes">
-            <VBox.margin>
-               <Insets />
-            </VBox.margin></Label>
+            <Label style="-fx-font-size: 20px;" text="My Recipes" />
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <Label text="Filter by category:" />
                 <ComboBox fx:id="categoryFilterBox" />
                 <Button fx:id="clearFilterButton" onAction="#onClearFilterClick" text="Clear" />
                 <Button fx:id="sortByNameButton" onAction="#onSortByNameClick" text="Sort: Name" />
                 <Button fx:id="sortByPrepTimeButton" onAction="#onSortByPrepTimeClick" text="Sort: PrepTime" />
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
             </HBox>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
         </VBox>
     </top>
     <center>
-        <ListView fx:id="recipeListView" prefWidth="203.0">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin></ListView>
+        <ListView fx:id="recipeListView" prefWidth="453.0" />
     </center>
     <bottom>
-        <VBox alignment="CENTER" style="-fx-padding: 10;">
+        <VBox alignment="CENTER" prefHeight="191.0" prefWidth="453.0" style="-fx-padding: 10;">
             <Button fx:id="addRecipeButton" onAction="#onAddRecipeClick" text="Add New Recipe" />
             <Label fx:id="emptyStateLabel" text="Recipe Box Empty  ╯︿╰" visible="false" />
         </VBox>
     </bottom>
    <padding>
-      <Insets left="45.0" />
+      <Insets left="50.0" />
    </padding>
 </BorderPane>

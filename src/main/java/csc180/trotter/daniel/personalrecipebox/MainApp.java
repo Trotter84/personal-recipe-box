@@ -24,7 +24,7 @@ public class MainApp extends Application {
 
 
 		FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("recipe-list-view.fxml"));
-		Scene scene = new Scene(fxmlLoader.load(), 585, 781);
+		Scene scene = new Scene(fxmlLoader.load(), 584, 781);
 		StackPane root = new StackPane();
 		root.setBackground(backgroundImg);
 		scene.getStylesheets().add(

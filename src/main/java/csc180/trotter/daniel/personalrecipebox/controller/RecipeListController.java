@@ -6,11 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -53,7 +55,7 @@ public class RecipeListController {
 		recipeListView.setOnMouseClicked(event -> {
 			Recipe selected = recipeListView.getSelectionModel().getSelectedItem();
 			if (selected != null) {
-				openEditView(selected);
+				openDetailPopup(selected);
 			}
 		});
 
@@ -123,6 +125,31 @@ public class RecipeListController {
 	@FXML
 	protected void onAddRecipeClick() {
 		openEditView(null);
+	}
+
+	private void openDetailPopup(Recipe recipe) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-detail-view.fxml"));
+			Parent root = loader.load();
+
+			RecipeDetailController controller = loader.getController();
+			controller.populate(recipe);
+			controller.setOnEditRequested(recipeToEdit -> openEditView(recipeToEdit));
+
+			Stage popupStage = new Stage();
+			popupStage.initModality(Modality.APPLICATION_MODAL);
+			popupStage.initOwner(addRecipeButton.getScene().getWindow());
+			popupStage.setTitle(recipe.getName());
+
+			Scene popupScene = new Scene(root);
+			popupScene.getStylesheets().add(
+					getClass().getResource("/csc180/trotter/daniel/personalrecipebox/recipe-box-theme.css").toExternalForm()
+			);
+			popupStage.setScene(popupScene);
+			popupStage.showAndWait();
+		} catch (IOException e) {
+			System.err.println("Failed to open recipe detail popup: " + e.getMessage());
+		}
 	}
 
 	private void openEditView(Recipe recipeToEdit) {

@@ -3,45 +3,62 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeEditController">
    <center>
       <VBox spacing="10.0" style="-fx-padding: 20;">
       
-                                                    <Label text="Recipe Name" />
-          <TextField fx:id="nameField" />
-          <Label fx:id="nameErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
-      
-                                              <Label text="Category" />
+          <Label text="Category" />
           <TextField fx:id="categoryField" />
           <Label text="Prep Time (minutes)" />
           <TextField fx:id="prepTimeField" />
           <Label fx:id="prepTimeErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
       
-                                              <Label text="Ingredients" />
-          <VBox fx:id="ingredientRowsContainer" spacing="6.0" />
+          <Label text="Ingredients" />
+         <ScrollPane prefHeight="241.0" prefWidth="200.0">
+            <content>
+                <VBox fx:id="ingredientRowsContainer" spacing="6.0" />
+            </content>
+         </ScrollPane>
           <Button fx:id="addIngredientButton" onAction="#onAddIngredientClick" text="+ Add Ingredient" />
           <Label fx:id="ingredientsErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
       
-                                              <Label text="Steps" />
-          <VBox fx:id="stepRowsContainer" spacing="6.0" />
+          <Label text="Steps" />
+         <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <content>
+                <VBox fx:id="stepRowsContainer" spacing="6.0" />
+            </content>
+         </ScrollPane>
           <Button fx:id="addStepButton" onAction="#onAddStepClick" text="+ Add Step" />
       
       </VBox>
    </center>
    <bottom>
    
-                                                 <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+          <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
            <Button fx:id="cancelButton" onAction="#onCancelClick" text="Cancel" />
            <Button fx:id="saveButton" onAction="#onSaveClick" text="Save" />
+         <padding>
+            <Insets right="40.0" />
+         </padding>
        </HBox>
    </bottom>
+   <top>
+      <VBox prefHeight="82.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+         <children>
+         
+             <Label text="Recipe Name" />
+             <TextField fx:id="nameField" />
+             <Label fx:id="nameErrorLabel" style="-fx-text-fill: red; -fx-font-size: 11px;" visible="false" />
+         </children>
+      </VBox>
+   </top>
    <padding>
-      <Insets left="45.0" />
+      <Insets left="50.0" />
    </padding>
 </BorderPane>

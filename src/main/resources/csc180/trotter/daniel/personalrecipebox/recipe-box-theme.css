@@ -20,11 +20,11 @@
 }
 
 .label {
+    -fx-font-family: Forte;
     -fx-text-fill: -brown-dark;
 }
 
 .label-title {
-    -fx-font-family: Forte;
     -fx-text-fill: -brown-dark;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
@@ -63,7 +63,6 @@
 }
 
 .list-view {
-    /*-fx-background-color: transparent;*/
     -fx-border-color: none;
 }
 
@@ -76,6 +75,10 @@
 .list-cell:hover {
     -fx-background-color: -brown;
     -fx-text-fill: -brown-dark;
+}
+
+#recipeListView {
+    -fx-background-color: transparent;
 }
 
 /*.list-cell:filled:selected {*/
