@@ -2,34 +2,48 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeListController">
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csc180.trotter.daniel.personalrecipebox.controller.RecipeListController">
     <top>
         <VBox spacing="8.0" style="-fx-padding: 10;">
-            <Label text="My Recipes" styleClass="label-title" />
-            <HBox spacing="10.0" alignment="CENTER_LEFT">
+            <Label styleClass="label-title" text="My Recipes">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></Label>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <Label text="Filter by category:" />
                 <ComboBox fx:id="categoryFilterBox" />
-                <Button fx:id="clearFilterButton" text="Clear" onAction="#onClearFilterClick" />
-                <Button fx:id="sortByNameButton" text="Sort: Name" onAction="#onSortByNameClick" />
-                <Button fx:id="sortByPrepTimeButton" text="Sort: PrepTime" onAction="#onSortByPrepTimeClick" />
+                <Button fx:id="clearFilterButton" onAction="#onClearFilterClick" text="Clear" />
+                <Button fx:id="sortByNameButton" onAction="#onSortByNameClick" text="Sort: Name" />
+                <Button fx:id="sortByPrepTimeButton" onAction="#onSortByPrepTimeClick" text="Sort: PrepTime" />
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
             </HBox>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
         </VBox>
     </top>
     <center>
-        <ListView fx:id="recipeListView" />
+        <ListView fx:id="recipeListView" prefWidth="203.0">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></ListView>
     </center>
     <bottom>
         <VBox alignment="CENTER" style="-fx-padding: 10;">
-            <Button fx:id="addRecipeButton" text="Add New Recipe" onAction="#onAddRecipeClick" />
+            <Button fx:id="addRecipeButton" onAction="#onAddRecipeClick" text="Add New Recipe" />
             <Label fx:id="emptyStateLabel" text="Recipe Box Empty  ╯︿╰" visible="false" />
         </VBox>
     </bottom>
+   <padding>
+      <Insets left="45.0" />
+   </padding>
 </BorderPane>
